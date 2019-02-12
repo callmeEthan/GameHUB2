@@ -1,0 +1,21 @@
+[Variables]
+Layout=background.inc
+List=list_game.inc
+Background=background.jpg
+SkinX=0.25
+SkinY=0
+SkinWidth=0.75
+SkinHeight=1
+DynamicBackground=1
+Delay=500
+ClickThrough=0
+Title=1
+TitleX=192
+TitleY=972
+FontSize=50
+FontColor=255,255,255
+Font=Source Sans Pro ExtraLight
+StringAlign=LeftBottom
+CloseButton=1
+Name=Games
+ImageTint=250,250,250
