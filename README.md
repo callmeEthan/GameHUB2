@@ -3,8 +3,8 @@ A game launcher interface for PC, a worthy successor to GameHUB 1.5
 This skin is an entirely different version from 1.5 and is written from scratch, it's not backward compatible and neither optimized, in fact it's probably even more performance hungry, **using latest version of rainmeter beta with Hardware acceleration is highly recommended.**  
 
 ## What's new?
-* Aim to provide more control to gamepad.
-* This skin would include most of the functionality is previous version, while including new feature, redesigned interface.  
+* Provide more control to gamepad.
+* This skin would include most of the functionality is previous version, while including new feature, new interface.  
 * Now working as a dynamic system, allowing multiple layout, list and app in a single skin.  
 
 ## Dynamic system
