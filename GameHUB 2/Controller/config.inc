@@ -21,7 +21,6 @@ BannerWidth=60
 BannerHeight=60
 Update=30
 ClickThrough=0
-Gamepad=1
 
 
 SoundHover=hover_1.wav
