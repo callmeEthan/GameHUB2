@@ -1,6 +1,6 @@
 [Variables]
 Total=4
-LastOpen=1
+LastOpen=2
 
 Name1=Games
 Icon1=gamepad.png

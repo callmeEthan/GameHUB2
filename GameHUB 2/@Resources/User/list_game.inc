@@ -1,6 +1,6 @@
 [Variables]
 Total=14
-LastOpen=14
+LastOpen=11
 
 Name1=Ghost recon: Wildlands 
 Icon1=wildlands.png
