@@ -25,7 +25,7 @@ SoundHover=hover_1.wav
 SoundClick=launch.wav
 SoundExit=exit.wav
 Keyboard=1
-Controller=1
+Gamepad=1
 
 [Background]
 Layout=background.inc
