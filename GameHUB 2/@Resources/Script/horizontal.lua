@@ -214,7 +214,7 @@ function interact(index)
 	elseif string.match(command, '"') then
 		SKIN:Bang('"'..command..'"')
 	else
-		SKIN:Bang(command)
+		SKIN:Bang('"'..command..'"')
 	end
 	local launch_action=SKIN:GetVariable('LaunchAction')
 	if launch_action ~= nil then SKIN:Bang(launch_action) end
