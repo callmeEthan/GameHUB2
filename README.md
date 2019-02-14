@@ -4,7 +4,7 @@ This skin is an entirely different version from 1.5 and is written from scratch,
 
 ## What's new?
 * Provide more control to gamepad.
-* This skin would include most of the functionality is previous version, while including new feature, new interface.  
+* This skin would include most of the functionality in previous version, while including new feature and interface.  
 * Now working as a dynamic system, allowing multiple layout, list and app in a single skin.  
 
 ## Dynamic system
