@@ -106,6 +106,24 @@ LeftMouseUpAction=[!CommandMeasure Animation "interact(12)"]
 ImageName=#@#Icons\#Icon12#
 Hidden=0
 
+[Icon13] 
+Meter=Image 
+MeterStyle=Icon
+MouseOverAction=[!CommandMeasure Animation "highlight(13)"]
+MouseLeaveAction=[!CommandMeasure Animation "dehighlight(13)"]
+LeftMouseUpAction=[!CommandMeasure Animation "interact(13)"]
+ImageName=#@#Icons\#Icon13#
+Hidden=0
+
+[Icon14] 
+Meter=Image 
+MeterStyle=Icon
+MouseOverAction=[!CommandMeasure Animation "highlight(14)"]
+MouseLeaveAction=[!CommandMeasure Animation "dehighlight(14)"]
+LeftMouseUpAction=[!CommandMeasure Animation "interact(14)"]
+ImageName=#@#Icons\#Icon14#
+Hidden=0
+
 [Title1] 
 Meter=String 
 MeterStyle=Title 
@@ -178,6 +196,18 @@ MeterStyle=Title
 Text=#Name12# 
 Hidden=0
 
+[Title13] 
+Meter=String 
+MeterStyle=Title 
+Text=#Name13# 
+Hidden=0
+
+[Title14] 
+Meter=String 
+MeterStyle=Title 
+Text=#Name14# 
+Hidden=0
+
 [Background1] 
 Meter=Image 
 MeterStyle=Background
@@ -248,6 +278,18 @@ Hidden=0
 Meter=Image 
 MeterStyle=Background
 ImageName=#@#Background\#Background12#
+Hidden=0
+
+[Background13] 
+Meter=Image 
+MeterStyle=Background
+ImageName=#@#Background\#Background13#
+Hidden=0
+
+[Background14] 
+Meter=Image 
+MeterStyle=Background
+ImageName=#@#Background\#Background14#
 Hidden=0
 
 [Cover1] 
@@ -358,6 +400,24 @@ LeftMouseUpAction=[!CommandMeasure Animation "interact(12)"]
 ImageName=#@#Cover\#Cover12#
 Hidden=0
 
+[Cover13] 
+Meter=Image 
+MeterStyle=Cover
+MouseOverAction=[!CommandMeasure Animation "highlight(13)"]
+MouseLeaveAction=[!CommandMeasure Animation "dehighlight(13)"]
+LeftMouseUpAction=[!CommandMeasure Animation "interact(13)"]
+ImageName=#@#Cover\#Cover13#
+Hidden=0
+
+[Cover14] 
+Meter=Image 
+MeterStyle=Cover
+MouseOverAction=[!CommandMeasure Animation "highlight(14)"]
+MouseLeaveAction=[!CommandMeasure Animation "dehighlight(14)"]
+LeftMouseUpAction=[!CommandMeasure Animation "interact(14)"]
+ImageName=#@#Cover\#Cover14#
+Hidden=0
+
 [Directory1] 
 Meter=String 
 MeterStyle=Directory
@@ -428,4 +488,16 @@ Hidden=0
 Meter=String 
 MeterStyle=Directory
 Text=#Dir12# 
+Hidden=0
+
+[Directory13] 
+Meter=String 
+MeterStyle=Directory
+Text=#Dir13# 
+Hidden=0
+
+[Directory14] 
+Meter=String 
+MeterStyle=Directory
+Text=#Dir14# 
 Hidden=0

@@ -28,5 +28,5 @@ FontColor=255,255,255
 StringAlign=LeftCenter
 Font=Source Sans Pro ExtraLight
 Keyboard=1
-edit_layout=name
-edit_entry=5
+edit_layout=test
+edit_entry=6

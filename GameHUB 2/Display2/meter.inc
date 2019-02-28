@@ -24,3 +24,21 @@ MouseLeaveAction=[!CommandMeasure Animation "dehighlight(3)"]
 LeftMouseUpAction=[!CommandMeasure Animation "interact(3)"]
 ImageName=#@#Cover\#Cover3#
 Hidden=0
+
+[Cover4] 
+Meter=Image 
+MeterStyle=Cover
+MouseOverAction=[!CommandMeasure Animation "highlight(4)"]
+MouseLeaveAction=[!CommandMeasure Animation "dehighlight(4)"]
+LeftMouseUpAction=[!CommandMeasure Animation "interact(4)"]
+ImageName=#@#Cover\#Cover4#
+Hidden=0
+
+[Cover5] 
+Meter=Image 
+MeterStyle=Cover
+MouseOverAction=[!CommandMeasure Animation "highlight(5)"]
+MouseLeaveAction=[!CommandMeasure Animation "dehighlight(5)"]
+LeftMouseUpAction=[!CommandMeasure Animation "interact(5)"]
+ImageName=#@#Cover\#Cover5#
+Hidden=0

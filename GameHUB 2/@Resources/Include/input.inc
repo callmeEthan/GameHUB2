@@ -5,6 +5,8 @@ Group=Animation
 DynamicVariables=1
 ActionList1=DisableKeyboard
 ActionList2=DisableGamepad
+ActionList3=EnableKeyboard
+ActionList4=EnableGamepad
 DisableKeyboard=[!CommandMeasure UP Stop][!CommandMeasure DOWN Stop][!CommandMeasure LEFT Stop][!CommandMeasure RIGHT Stop][!CommandMeasure ENTER Stop][!CommandMeasure ESCAPE Stop]
 DisableGamepad=[!DisableMeasureGroup Gamepad]
 EnableKeyboard=[!CommandMeasure UP Start][!CommandMeasure DOWN Start][!CommandMeasure LEFT Start][!CommandMeasure RIGHT Start][!CommandMeasure ENTER Start][!CommandMeasure ESCAPE Start]
@@ -51,6 +53,7 @@ Plugin=HotKey
 HotKey=ESCAPE
 KeyDownAction=[!CommandMeasure Animation "input('back')"]
 Group=Input | Keyboard
+
 
 [measureXInput_0_Dpad_U]
 Measure=Plugin

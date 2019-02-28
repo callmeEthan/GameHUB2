@@ -12,9 +12,12 @@ function Initialize()
 	SKIN:Bang('!SetOption','Icon'..current_entry, 'ImageTint', SKIN:GetVariable('HighlightTint'))
 	SKIN:Bang('!SetOption','Icon'..current_entry, 'SolidColor', SKIN:GetVariable('HighlightColor'))
 	SKIN:Bang('[!Delay 1000][!CommandMeasure "Animation" "highlight('..current_entry..')"')
+	DelayMeasure = SKIN:GetMeasure('MeasureDelay')
 end
 
 function input(key)
+	local delay = DelayMeasure:GetValue()
+	if delay<10 then return end
 	if key=='next' then
 		if SKIN:GetVariable('SoundClick')~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('SoundClick')) end
 		current_entry = current_entry + 1

@@ -40,6 +40,20 @@ PreserveAspectRatio=0
 DynamicVariables=1
 UpdateDivider=-1
 
+
+[Title]
+Meter=String
+FontSize=#FontSize#
+FontColor=#FontColor#
+FontFace=#Font#
+AntiAlias=1
+StringAlign=#StringAlign#
+TransformationMatrix=1; 0; 0; 1; #TitleX#; #TitleY#
+Text=#Name#
+DynamicVariables=1
+Hidden=(#Title#=0 ? 1 : 0)
+UpdateDivider=-1
+
 [FrostedGlass]
 Measure=Plugin
 Plugin=FrostedGlass

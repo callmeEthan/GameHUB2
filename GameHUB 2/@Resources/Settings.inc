@@ -1,5 +1,5 @@
 [Variables]
-filelayout=page_game.inc
+filelayout=page_test.inc
 DisplayX=0
 DisplayY=0
 DisplayWidth=#SCREENAREAWIDTH#

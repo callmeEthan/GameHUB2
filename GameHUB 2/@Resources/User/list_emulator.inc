@@ -1,6 +1,6 @@
 [Variables]
-Total=6
-LastOpen=5
+Total=7
+LastOpen=7
 
 Name1=Citra 3DS
 Icon1=citra.png
@@ -31,3 +31,8 @@ Icon6=360px-Yuzu-icon.svg.png
 Cover6=
 Background6=
 Dir6=C:\Users\Finch\AppData\Local\yuzu\canary\yuzu.exe
+Name7=DeSmuME
+Icon7=25991.png
+Cover7=
+Background7=
+Dir7=E:\roms\NDS\DeSmuME_git#42817475_x64.exe

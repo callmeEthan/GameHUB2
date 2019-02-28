@@ -206,10 +206,11 @@ function dehighlight(index)
 end
 
 function interact(index)
+	SKIN:Bang('!ClickThrough', 1)
 	if SKIN:GetVariable('SoundClick')~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('SoundClick')) end
 	local command=SKIN:GetVariable('Dir'..index)
 	SKIN:Bang('!WriteKeyValue','Variables','LastOpen',index,'#@#User\\'..SKIN:GetVariable('List'))
-	if string.match(command, '%[') then
+	if string.sub(command,1,1) == '[' then
 		SKIN:Bang(command)
 	elseif string.match(command, '"') then
 		SKIN:Bang('"'..command..'"')

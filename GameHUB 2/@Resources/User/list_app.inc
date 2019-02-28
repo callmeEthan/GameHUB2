@@ -1,6 +1,6 @@
 [Variables]
 Total=12
-LastOpen=11
+LastOpen=6
 
 Name1=Photos
 Icon1=Photo.png
@@ -27,10 +27,10 @@ Icon5=ps.png
 Cover5=ps.jpg
 Dir5=C:\Program Files\Adobe\Adobe Photoshop CS6 (64 Bit)\Photoshop.exe
 
-Name6=Movies
-Icon6=movie.png
-Cover6=movie.jpg
-Dir6=C:\Program Files\VideoLAN\VLC\vlc.exe
+Name6=BOTW editor
+Icon6=botw.png
+Cover6=botw.jpg
+Dir6=E:\roms\WiiU\rom\The Legend of Zelda Breath of the Wild\botw_editor.exe
 
 Name7=Unity
 Icon7=unity.png
