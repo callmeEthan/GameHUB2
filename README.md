@@ -26,6 +26,7 @@ Plugin include:
 [XInput](https://forum.rainmeter.net/viewtopic.php?t=20108) by dgrace.  
 [IsFullScreen 3.0](https://forum.rainmeter.net/viewtopic.php?t=28305) by jsmorley.  
 [Drag&Drop V3.1.3](https://forum.rainmeter.net/viewtopic.php?t=23107) by theAzack9.  
+[Movie Thumbnailer mtn 2.1](https://github.com/Revan654/movie-thumbnailer-mtn)
 Some icons from [https://flaticon.com/](flaticon.com).  
 Some game cover and icons are included.  
 
