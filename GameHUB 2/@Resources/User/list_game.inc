@@ -1,6 +1,6 @@
 [Variables]
-Total=14
-LastOpen=3
+Total=13
+LastOpen=1
 
 Name1=Insurgency Sandstorm 
 Icon1=IS.png
@@ -8,86 +8,76 @@ Cover1=IS.jpg
 Dir1=steam://rungameid/581320
 Background1=IS.jpg
 
-Name2=Resident Evil 2
-Icon2=re2.png
-Dir2=D:\Program Files\Resident Evil 2\re2.exe
-Cover2=RE2.jpg
-Background2=RE2.jpg
+Name2=Control
+Icon2=control_ico.png
+Dir2=D:\Program Files\Control\Control_DX11.exe
+Cover2=control_cover.jpg
+Background2=control_bkg.jpg
 
-Name3=Metro Exodus
-Icon3=MetroE.png
-Dir3=D:\Program Files\Metro - Exodus\MetroExodus.exe
-Cover3=MetroE.jpg
-Background3=Metro-Exodus-4K-Wallpaper-1.jpg
+Name3=Resident Evil 2
+Icon3=re2.png
+Dir3=D:\Program Files\Resident Evil 2\re2.exe
+Cover3=re2.jpg
+Background3=RE2.jpg
 
-Name4=Far Cry New Dawn
-Icon4=fcnd.png
-Cover4=fcnd.jpg
-Dir4=D:\Program Files\Far Cry - New Dawn\bin\FarCryNewDawn.exe
-Background4=fcnd.jpg
+Name4=Warframe
+Icon4=warframe.png
+Cover4=warframe.jpg
+Dir4=steam://rungameid/230410
+Background4=warframe.jpg
 
-Name5=Final Fantasy XV
-Icon5=ffxv.png
-Cover5=ffxv.jpg
-Dir5=D:\Program Files\FFXV\ffxv_s.exe
-Background5=ffxv.jpg
+Name5=Metro Exodus
+Icon5=MetroE.png
+Cover5=MetroE.jpg
+Dir5=D:\Program Files\Metro - Exodus\MetroExodus.exe
+Background5=Metro-Exodus-4K-Wallpaper-1.jpg
 
-Name6=Nier Automata
-Icon6=nier.png
-Cover6=nier.jpg
-Dir6=D:\Program Files\NieR - Automata\NieRAutomata.exe
-Background6=nier.jpg
+Name6=Ghost Recon Wildlands
+Icon6=GRWI
+Cover6=GRWC.jpg
+Dir6=steam://rungameid/460930
+Background6=GRWB.jpg
 
-Name7=Assassin's Creed Odysseys
-Icon7=ACO.png
-Cover7=ACO.jpg
-Dir7=D:\Program Files\Assassin's Creed - Odyssey\ACOdyssey.exe
-Background7=ACO.jpg
+Name7=Assassin's Creed Origins
+Icon7=ACOrigin_ico.png
+Cover7=ACOrigin_cover.jpg
+Dir7=D:\Program Files\Assassin's Creed - Origins\ACOrigins.exe
+Background7=ACOrigin_bkg.jpg
 
-Name8=The Witcher 3: Wild Hunt
-Icon8=witcher3.png
-Cover8=witcher3.jpg
-Dir8=D:\Program Files\The Witcher 3 - Wild Hunt\bin\x64\witcher3.exe
-Background8=witcher3.jpg
+Name8=Assassin's Creed Oddysey
+Icon8=ACO.png
+Cover8=ACO.jpg
+Dir8=D:\Program Files\Assassin's Creed - Odyssey\ACOdyssey.exe
+Background8=ACO.jpg
 
-Name9=Warframe
-Icon9=warframe.png
-Cover9=warframe.jpg
-Dir9=C:\Users\Finch\AppData\Local\Warframe\Downloaded\Test\Tools\Launcher.exe
-Background9=warframe.jpg
+Name9=Batman: Arkham Knight
+Icon9=arkhamknight.png
+Cover9=arkhamknight.jpg
+Dir9=D:\Program Files\Batman - Arkham Knight\Binaries\Win64\BatmanAK.exe
+Background9=batman_arkham.jpg
 
-Name10=Batman: Arkham Knight
-Icon10=arkhamknight.png
-Cover10=arkhamknight.jpg
-Dir10=D:\Program Files\Batman - Arkham Knight\Binaries\Win64\BatmanAK.exe
-Background10=batman_arkham.jpg
+Name10=Nier Automata
+Icon10=nier.png
+Cover10=nier.jpg
+Dir10=D:\Program Files\NieR - Automata\NieRAutomata.exe
+Background10=nier.jpg
 
-Name11=The Legend of Zelda: Breath of the Wild
-Icon11=botw.png
-Cover11=botw.jpg
-Dir11=E:\roms\WiiU\Cemu.exe" "-g" "E:\roms\WiiU\rom\The Legend of Zelda Breath of the Wild\code\U-King.rpx" "-f
-Background11=botw.jpg
 
-Name12=Shadow of the Tomb Raider
-Icon12=SOTTR.png
-Cover12=SOTTR.jpg
-Dir12=D:\Program Files\Shadow of the Tomb Raider\SOTTR.exe
-Background12=SOTTR.jpg
+Name11=The Witcher 3: Wild Hunt
+Icon11=witcher3.png
+Cover11=witcher3.jpg
+Background11=witcher3.jpg
+Dir11=D:\Program Files\The Witcher 3 - Wild Hunt\bin\x64\witcher3.exe
 
-Name13=The Sims 4
-Icon13=sims4.png
-Cover13=sims4.png
-Dir13=D:\Program Files\The Sims 4\Game\Bin\TS4_x64.exe
-Background13=sims4.jpg
 
-Name14=Minecraft 
-Icon14=minecraft.png
-Cover14=minecraft.png
-Dir14=C:\Users\Finch\AppData\Roaming\.minecraft\MinecraftLauncher.exe
-Background14=minecraft.jpg
+Name12=Far cry 5
+Icon12=FC5.png
+Cover12=13607.jpg
+Dir12=steam://rungameid/552520
+Background12=FC5.jpg
 
-Name15=Ace Combat 7
-Icon15=ac7.png
-Cover15=ac7.jpg
-Background15=ac7.jpg
-Dir15=D:\Program Files\Ace Combat 7 - Skies Unknown\Ace7Game.exe
+Name13=Minecraft
+Icon13=minecraft.png
+Cover13=minecraft.png
+Background13=minecraft.jpg
+Dir13=C:\Users\Finch\AppData\Roaming\.minecraft\MinecraftLauncher.exe

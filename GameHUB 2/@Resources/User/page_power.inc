@@ -1,6 +1,6 @@
 [Display1]
 Layout=horizontal.inc
-LoadMeter={'cover_meter.inc','icon_meter.inc','title_meter.inc'}
+LoadMeter={'background_meter.inc','icon_meter.inc','title_meter.inc'}
 SkinWidth=0.7
 SkinX=0.15
 SkinY=0.2
@@ -26,7 +26,7 @@ StringAlign=CenterBottom
 Update=25
 ClickThrough=0
 CoverAspectRatio=0
-StaticBackground=0
+StaticBackground=1
 Keyboard=1
 Gamepad=1
 SoundHover=hover_1.wav

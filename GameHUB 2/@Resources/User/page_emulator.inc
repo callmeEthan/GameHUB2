@@ -2,7 +2,7 @@
 Layout=horizontal.inc
 LoadMeter={'icon_meter.inc'}
 SkinWidth=0.8
-SkinX=0.12
+SkinX=0.1
 SkinY=0.8
 List=list_emulator.inc
 Space=2
@@ -29,7 +29,7 @@ SoundExit=exit.wav
 Layout=horizontal.inc
 LoadMeter={'cover_meter.inc'}
 SkinWidth=0.8
-SkinX=0.12
+SkinX=0.1
 SkinY=0.15
 List=list_rom.inc
 Space=30
