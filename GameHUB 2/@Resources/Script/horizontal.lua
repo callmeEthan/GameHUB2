@@ -13,6 +13,8 @@ function Initialize()
 	SpectrumIcon=tonumber(SKIN:GetVariable('SpectrumIcon',1))
 	highlight_solid=SKIN:GetVariable('HighlightColor','0,0,0,1')
 	highlight_tint=SKIN:GetVariable('HighlightTint','255,255,255')
+	move_x=tonumber(SKIN:GetVariable('Offset_x',0))
+	move_y=tonumber(SKIN:GetVariable('Offset_y',0))
 	highlight_index = 0
 	spectrum = 0
 	x,y = {}, {}
@@ -22,6 +24,9 @@ function Initialize()
 	offset=0
 	offset_true=0
 	offsety=skinheight
+	shift_x=tonumber(SKIN:GetVariable('SkinX','0'))*skinwidth
+	shift_y=tonumber(SKIN:GetVariable('SkinY','0'))*skinheight
+	upscale=1/tonumber(SKIN:GetVariable('SkinWidth','1'))
 	move()
 	if SKIN:GetVariable('Keyboard','0')=='0' then SKIN:Bang('!CommandMeasure','Control','Execute 1') end
 	if SKIN:GetVariable('Gamepad','0')=='0' then SKIN:Bang('!CommandMeasure','Control','Execute 2') end
@@ -96,6 +101,8 @@ function get_meter()
 			entry = entry+1
 		end
 		meter_entry = meter_entry + 1
+		background_index = 1
+		background_load_delay()	
 	end
 	
 	if SKIN:GetVariable('Title','1') == '0' then SKIN:Bang('!HideMeterGroup','Title') end
@@ -122,15 +129,24 @@ function update()
 	offsety = (offsety-((offsety-0)/transition))
 	for k,v in pairs(meter_list) do
 		for mk,mv in pairs(v) do
-		v[mk]:SetX(x[mk]+offset_true)
-		v[mk]:SetY(y[mk]+offsety)
+		v[mk]:SetX(x[mk]+offset_true+move_x)
+		v[mk]:SetY(y[mk]+offsety+move_y)
 		end
 	end
 	if highlight_index ~=0 then
 		spectrum_meter:SetX(x[highlight_index]+offset_true)
-		spectrum_meter:SetY(y[highlight_index]+offsety)
+		spectrum_meter:SetY(y[highlight_index])
 	end
 	if static_background == 1 then static_background_set() end
+end
+
+
+function background_load_delay()
+	SKIN:Bang('!SetOption','Background'..background_index,'ImageName','#@#Background\\#Background' .. background_index ..'#')
+	if background_index < total then
+		SKIN:Bang('!CommandMeasure','BackgroundLoadDelay','Execute 1')
+		background_index = background_index + 1
+	end
 end
 
 function static_background_set()
@@ -142,10 +158,10 @@ function static_background_set()
 		meter_y=v:GetY()
 		meter_h=v:GetH()
 		meter_w=v:GetW()
-		crop_x=meter_x
-		crop_y=meter_y
-		crop_w=meter_w
-		crop_h=meter_h
+		crop_x=meter_x+shift_x
+		crop_y=meter_y+shift_y
+		crop_w=meter_w*upscale
+		crop_h=meter_h*upscale
 		SKIN:Bang('!SetOption','Background'..i,'ImageCrop',crop_x..','..crop_y..','..crop_w..','..crop_h)
 	end
 end
@@ -175,7 +191,8 @@ function highlight(index)
 	SKIN:Bang('!SetOption','Icon'..index, 'SolidColor', highlight_solid)
 	SKIN:Bang('!SetOption','Icon'..index, 'ImageTint' , highlight_tint)
 	highlight_index = tonumber(index)
-	if SKIN:GetVariable('SoundHover')~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('SoundHover')) end
+	if SKIN:GetVariable('Sound'..index)~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('Sound'..index))
+	elseif SKIN:GetVariable('SoundHover')~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('SoundHover')) end
 end
 
 function broadcast_highlight(index)
@@ -206,9 +223,14 @@ function dehighlight(index)
 end
 
 function interact(index)
+	local command=SKIN:GetVariable('Dir'..index)
+	if string.sub(command,1,7)=="layout:" then 
+		SKIN:Bang("!WriteKeyValue", "Variables", "filelayout", string.sub(command,8), "#SKINSPATH#\\GameHub 2\\@Resources\\Settings.inc")
+		SKIN:Bang("!ActivateConfig", "GameHub 2", "GameHUB.ini")
+		return
+		end
 	SKIN:Bang('!ClickThrough', 1)
 	if SKIN:GetVariable('SoundClick')~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('SoundClick')) end
-	local command=SKIN:GetVariable('Dir'..index)
 	SKIN:Bang('!WriteKeyValue','Variables','LastOpen',index,'#@#User\\'..SKIN:GetVariable('List'))
 	if string.sub(command,1,1) == '[' then
 		SKIN:Bang(command)
@@ -233,7 +255,7 @@ function focus(index,scaling)
 end
 
 function input(key)
-	if key == 'back' then exit() end
+	if key == 'back' then exit() return end
 	SKIN:Bang('!ClickThrough',1)
 	if highlight_index==0 then
 		highlight_index=1
@@ -268,7 +290,7 @@ end
 function exit(mute)
 	SKIN:Bang('!WriteKeyValue','Variables','Active','0','#@#Active.inc')
 	if mute ~= true then
-	if SKIN:GetVariable('SoundExit')~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('SoundExit')) end
+		if SKIN:GetVariable('SoundExit')~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('SoundExit')) end
 	end
 	SKIN:Bang('!DeactivateConfigGroup','GameHUB2')
 end
@@ -287,5 +309,6 @@ end
 
 function launch_effect()
 	SKIN:Bang('!WriteKeyValue', 'MeterIcon', 'ImageName', '#@#Icons\\'..SKIN:GetVariable('Icon'..highlight_index), '#ROOTCONFIGPATH#\\Controller\\Launch\\Launching.ini')
+	SKIN:Bang('!WriteKeyValue', 'Background', 'ImageName', '#@#Background\\'..SKIN:GetVariable('Background'..highlight_index), '#ROOTCONFIGPATH#\\Controller\\Background\\Image.ini')
 	SKIN:Bang('!ActivateConfig','#ROOTCONFIG#\\Controller\\Launch', 'Launching.ini')
 end
