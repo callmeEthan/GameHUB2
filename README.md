@@ -3,13 +3,13 @@ A game launcher interface for PC, a worthy successor to GameHUB.
 This skin is an entirely different version from 1.5 and is written from scratch, it's not backward compatible and neither optimized, **using latest version of rainmeter beta with Hardware acceleration is highly recommended.**  
 
 ## Update 6
-You can now upscale image by adding ImageScale and ImageShift in your layout file (under [Display] section)
-note that ImageScale=0.5 will increase image size by twice and ImageScale=2 will reduce it by half
-ImageShift change how much the image "scroll" when you scroll the list, ImageShift=0 will stop image from scrolling.
-You can now add animated image in launch circle. Template image are in @Resources\Gif folder, inside list.inc file add Gif#=<Gif folder name>
-For example Gif1=KonekoRight
-Other entry without gif value defined will launch as normal
-To create gif image, follow [this skin](https://www.deviantart.com/therunningjoke/art/Rainmeter-Anime-Gif-Picture-4-0-581408520) instruction.
+You can now upscale image by adding ImageScale and ImageShift in your layout file (under [Display] section)  
+note that ImageScale=0.5 will increase image size by twice and ImageScale=2 will reduce it by half  
+ImageShift change how much the image "scroll" when you scroll the list, ImageShift=0 will stop image from scrolling.  
+You can now add animated image in launch circle. Template image are in @Resources\Gif folder, inside list.inc file add Gif#=<Gif folder name>  
+* Example Gif1=KonekoRight  
+Other entry without gif value defined will launch as normal  
+To create gif image, follow [this skin](https://www.deviantart.com/therunningjoke/art/Rainmeter-Anime-Gif-Picture-4-0-581408520) instruction.  
 
 ## What's new?
 * Provide more control to gamepad.
