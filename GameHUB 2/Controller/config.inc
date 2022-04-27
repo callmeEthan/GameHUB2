@@ -1,13 +1,16 @@
 [Variables]
-Layout=vertical.inc
+Layout=horizontal.inc
 LoadMeter={'icon_meter.inc'}
 List=list_page.inc
-SkinHeight=0.5
-SkinX=0
-SkinY=0.3
+SkinWidth=0.2
+SkinHeight=0.1
+SkinX=0.42
+SkinY=0
 Space=2
 ColumnSpace=0
 Columns=1
+RowSpace=2
+Rows=1
 ScrollSpeed=0.1
 ScrollDivider=8
 ScrollLock=1
@@ -21,7 +24,6 @@ BannerWidth=60
 BannerHeight=60
 Update=30
 ClickThrough=0
-
 
 SoundHover=hover_1.wav
 SoundClick=switch.wav

@@ -1,20 +1,18 @@
 [Variables]
-Layout=background.inc
+Layout=acrylic.inc
 List=list_game.inc
 SkinX=0
 SkinY=0
 SkinWidth=1
 SkinHeight=1
-DynamicBackground=1
+DynamicBackground=0
 Delay=500
 ClickThrough=0
 Title=1
-TitleX=478.1
-TitleY=614.4
+TitleX=672
+TitleY=864
 FontSize=50
 FontColor=255,255,255
-Font=Agency FB
+Font=Source Sans Pro ExtraLight
 CloseButton=1
-ImageTint=250,250,250
-Background=Metro-Exodus-4K-Wallpaper-1.jpg
-Name=Metro Exodus
+ImageTint=255,255,255
