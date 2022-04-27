@@ -26,7 +26,9 @@ function Initialize()
 	offsety=skinheight
 	shift_x=tonumber(SKIN:GetVariable('SkinX','0'))*skinwidth
 	shift_y=tonumber(SKIN:GetVariable('SkinY','0'))*skinheight
-	upscale=1/tonumber(SKIN:GetVariable('SkinWidth','1'))
+	image_shift=tonumber(SKIN:GetVariable('ImageShift','0.9'))
+	image_scale=tonumber(SKIN:GetVariable('ImageScale','1'))
+	upscale=image_scale/tonumber(SKIN:GetVariable('SkinWidth','1'))
 	move()
 	if SKIN:GetVariable('Keyboard','0')=='0' then SKIN:Bang('!CommandMeasure','Control','Execute 1') end
 	if SKIN:GetVariable('Gamepad','0')=='0' then SKIN:Bang('!CommandMeasure','Control','Execute 2') end
@@ -109,8 +111,10 @@ function get_meter()
 	if spectrum == 1 then spectrum_meter=SKIN:GetMeter('SpectrumCover') else spectrum_meter=SKIN:GetMeter('HighlightCover') end
 	local last_open=tonumber(SKIN:GetVariable('LastOpen','0'))
 	if last_open ~= 0 then
-		focus(last_open,0.1)
+		focus_now(last_open,0.1)
 		highlight_index=last_open
+		SKIN:Bang('!SetOption','Icon'..highlight_index, 'SolidColor', highlight_solid)
+		SKIN:Bang('!SetOption','Icon'..highlight_index, 'ImageTint' , highlight_tint)
 	end
 end
 
@@ -158,8 +162,8 @@ function static_background_set()
 		meter_y=v:GetY()
 		meter_h=v:GetH()
 		meter_w=v:GetW()
-		crop_x=meter_x+shift_x
-		crop_y=meter_y+shift_y
+		crop_x=meter_x*upscale*image_shift+shift_x
+		crop_y=meter_y*upscale*image_shift+shift_y
 		crop_w=meter_w*upscale
 		crop_h=meter_h*upscale
 		SKIN:Bang('!SetOption','Background'..i,'ImageCrop',crop_x..','..crop_y..','..crop_w..','..crop_h)
@@ -193,6 +197,20 @@ function highlight(index)
 	highlight_index = tonumber(index)
 	if SKIN:GetVariable('Sound'..index)~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('Sound'..index))
 	elseif SKIN:GetVariable('SoundHover')~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('SoundHover')) end
+end
+
+function highlight_next()
+	if highlight_index<total then
+		local index=highlight_index + 1
+		highlight(index)
+	end
+end
+
+function highlight_previous()
+	if highlight_index>1 then
+		local index=highlight_index - 1
+		highlight(index)
+	end
 end
 
 function broadcast_highlight(index)
@@ -254,6 +272,16 @@ function focus(index,scaling)
 	scroll(0)
 end
 
+function focus_now(index,scaling)
+	if scroll_lock==1 then return end
+	local center=skinwidth*scaling
+	local index=tonumber(index)
+	offset=math.min(offset,-(x[index]-(skinwidth-center-bannerwidth)))
+	offset=math.max(offset,-(x[index]-center))
+	offset_true=offset
+	scroll(0.15)
+end
+
 function input(key)
 	if key == 'back' then exit() return end
 	SKIN:Bang('!ClickThrough',1)
@@ -308,7 +336,13 @@ end
 
 
 function launch_effect()
-	SKIN:Bang('!WriteKeyValue', 'MeterIcon', 'ImageName', '#@#Icons\\'..SKIN:GetVariable('Icon'..highlight_index), '#ROOTCONFIGPATH#\\Controller\\Launch\\Launching.ini')
 	SKIN:Bang('!WriteKeyValue', 'Background', 'ImageName', '#@#Background\\'..SKIN:GetVariable('Background'..highlight_index), '#ROOTCONFIGPATH#\\Controller\\Background\\Image.ini')
+	local gif=SKIN:GetVariable('Gif'..highlight_index)
+	if gif ~= nil then
+		SKIN:Bang('!WriteKeyValue', 'Variables', 'Path', '"#@#Gif\\'..gif..'"', '#ROOTCONFIGPATH#\\Controller\\Launch\\GIF.ini')
+		SKIN:Bang('!ActivateConfig','#ROOTCONFIG#\\Controller\\Launch', 'GIF.ini')
+	else
+	SKIN:Bang('!WriteKeyValue', 'MeterIcon', 'ImageName', '#@#Icons\\'..SKIN:GetVariable('Icon'..highlight_index), '#ROOTCONFIGPATH#\\Controller\\Launch\\Launching.ini')
 	SKIN:Bang('!ActivateConfig','#ROOTCONFIG#\\Controller\\Launch', 'Launching.ini')
+	end
 end

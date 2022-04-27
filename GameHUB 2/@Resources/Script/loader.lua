@@ -76,9 +76,13 @@ function activate_config()
 		if SKIN:GetVariable(v,'')=='Display.ini' then SKIN:Bang('!ActivateConfig', root..'\\'..v, 'Display2.ini')
 		else SKIN:Bang('!ActivateConfig', root..'\\'..v, 'Display.ini') end
 	end
-	for k,v in pairs(last_active) do
+	for k, v in pairs(last_active) do
 		if v == 1 then SKIN:Bang('!DeactivateConfig',root..'\\'..k) end
 	end
 	SKIN:Bang('!WriteKeyValue','Variables','LastActive',list,'#@#Active.inc')
 	SKIN:Bang('!DeactivateConfig', root)
+end
+
+function load_skin()
+	
 end

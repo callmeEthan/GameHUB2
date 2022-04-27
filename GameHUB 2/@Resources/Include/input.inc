@@ -108,3 +108,27 @@ Channel=Face_R
 IfEqualValue=1
 IfEqualAction=[!CommandMeasure Animation "input('back')"]
 Group=Input | Gamepad
+
+[measureXInput_0_JoyL_X]
+Measure=Plugin
+Plugin=XInput
+Device=0
+Channel=JoyL_X
+IfBelowValue=-0.8
+IfBelowAction=[!CommandMeasure Animation "input('left')"]
+IfAboveValue=0.8
+IfAboveAction=[!CommandMeasure Animation "input('right')"]
+IfConditionMode=1
+Group=Input | Gamepad
+
+[measureXInput_0_JoyL_Y]
+Measure=Plugin
+Plugin=XInput
+Device=0
+Channel=JoyL_Y
+IfBelowValue=-0.8
+IfBelowAction=[!CommandMeasure Animation "input('down')"]
+IfAboveValue=0.8
+IfAboveAction=[!CommandMeasure Animation "input('up')"]
+IfConditionMode=1
+Group=Input | Gamepad

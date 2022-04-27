@@ -22,9 +22,10 @@ function get_file()
 		name = name:gsub('%b()', '')
 		name = name:gsub('%b[]', '')
 		SKIN:Bang('!SetVariable','Name'..total, name)
-		SKIN:Bang('!SetOption','Icon'..total,'ImageName','#@#Icons\\video.png')
-		SKIN:Bang('!SetVariable','Dir'..total,File)
-		SKIN:Bang('!HideMeter','Cover'..total)
+		SKIN:Bang('!SetOption','Cover'..total,'ImageName','#@#Icons\\video.png')
+		-- SKIN:Bang('!SetVariable','Dir'..total,File)
+		SKIN:Bang('!SetVariable','Dir'..total,'[vlc --fullscreen "'..File..'"]')
+		-- SKIN:Bang('!HideMeter','Cover'..total)
 		filelist [total] = File
 	end
 	SKIN:Bang('!SetVariable','Total', total)

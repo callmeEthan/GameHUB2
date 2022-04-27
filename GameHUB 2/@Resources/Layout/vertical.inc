@@ -23,6 +23,12 @@ ScriptFile=#@#Script\vertical.lua
 OnUpdateAction=[!CommandMeasure Animation update()]
 DynamicVariables=1
 
+[BackgroundLoadDelay]
+Measure=Plugin
+Plugin=ActionTimer
+ActionList1=Wait 100 | SetBackground
+SetBackground=[!CommandMeasure Animation background_load_delay()]
+
 [Broadcast]
 Measure=Script
 ScriptFile=#@#Script\Broadcast.lua
@@ -42,6 +48,7 @@ MouseScrollUpAction=[!CommandMeasure "Animation" "scroll(-#ScrollSpeed#)"]
 MouseScrollDownAction=[!CommandMeasure "Animation" "scroll(#ScrollSpeed#)"]
 UpdateDivider=-1
 Hidden=0
+PreserveAspectRatio=0
 
 [Title]
 Meter=String
@@ -107,6 +114,7 @@ DynamicVariables=1
 [HighlightCover]
 meter=Image
 ImageName=#@#Highlight.png
+ImageTint=#HighlightEffect#
 Y=#CURRENTCONFIGHEIGHT#
 W=#BannerWidth#
 H=#BannerHeight#

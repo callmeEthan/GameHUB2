@@ -24,6 +24,8 @@ function Initialize()
 	scroll_limit=0
 	shift_x=tonumber(SKIN:GetVariable('SkinX','0'))*skinwidth
 	shift_y=tonumber(SKIN:GetVariable('SkinY','0'))*skinheight
+	image_shift=tonumber(SKIN:GetVariable('ImageShift','0.9'))
+	image_scale=tonumber(SKIN:GetVariable('ImageScale','1'))
 	move()
 	if SKIN:GetVariable('Keyboard','0')=='0' then SKIN:Bang('!CommandMeasure','Control','Execute 1') end
 	if SKIN:GetVariable('Gamepad','0')=='0' then SKIN:Bang('!CommandMeasure','Control','Execute 2') end
@@ -154,8 +156,8 @@ function static_background_set()
 		meter_y=v:GetY()
 		meter_h=v:GetH()
 		meter_w=v:GetW()
-		crop_x=meter_x+shift_x
-		crop_y=meter_y+shift_y
+		crop_x=meter_x*upscale*image_shift+shift_x
+		crop_y=meter_y*upscale*image_shift+shift_y
 		crop_w=meter_w
 		crop_h=meter_h
 		SKIN:Bang('!SetOption','Background'..i,'ImageCrop',crop_x..','..crop_y..','..crop_w..','..crop_h)
@@ -188,6 +190,20 @@ function highlight(index)
 	SKIN:Bang('!SetOption','Icon'..index, 'ImageTint', highlight_tint)
 	highlight_index = tonumber(index)
 	if SKIN:GetVariable('SoundHover')~=nil then SKIN:Bang('Play #@#Sounds\\'..SKIN:GetVariable('SoundHover')) end
+end
+
+function highlight_next()
+	if highlight_index<total then
+		local index=highlight_index + 1
+		highlight(index)
+	end
+end
+
+function highlight_previous()
+	if highlight_index>1 then
+		local index=highlight_index - 1
+		highlight(index)
+	end
 end
 
 function broadcast_highlight(index)
@@ -303,7 +319,13 @@ function exit(mute)
 end
 
 function launch_effect()
-	SKIN:Bang('!WriteKeyValue', 'MeterIcon', 'ImageName', '#@#Icons\\'..SKIN:GetVariable('Icon'..highlight_index), '#ROOTCONFIGPATH#\\Controller\\Launch\\Launching.ini')
 	SKIN:Bang('!WriteKeyValue', 'Background', 'ImageName', '#@#Background\\'..SKIN:GetVariable('Background'..highlight_index), '#ROOTCONFIGPATH#\\Controller\\Background\\Image.ini')
+	local gif=SKIN:GetVariable('Gif'..highlight_index)
+	if gif ~= nil then
+		SKIN:Bang('!WriteKeyValue', 'Variables', 'Path', '"#@#Gif\\'..gif..'"', '#ROOTCONFIGPATH#\\Controller\\Launch\\GIF.ini')
+		SKIN:Bang('!ActivateConfig','#ROOTCONFIG#\\Controller\\Launch', 'GIF.ini')
+	else
+	SKIN:Bang('!WriteKeyValue', 'MeterIcon', 'ImageName', '#@#Icons\\'..SKIN:GetVariable('Icon'..highlight_index), '#ROOTCONFIGPATH#\\Controller\\Launch\\Launching.ini')
 	SKIN:Bang('!ActivateConfig','#ROOTCONFIG#\\Controller\\Launch', 'Launching.ini')
+	end
 end

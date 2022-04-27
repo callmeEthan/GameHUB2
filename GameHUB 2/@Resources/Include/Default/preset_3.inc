@@ -13,7 +13,6 @@ ScrollDivider=8
 Transition=5
 IconSolid=255,255,255,100
 IconTint=0,0,0,155
-HighlightColor=0,0,0,80
 IconScale=0.7
 BannerWidth=(#DisplayWidth#*0.2)
 BannerHeight=(#DisplayHeight#*0.6)

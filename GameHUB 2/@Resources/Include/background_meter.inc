@@ -1,5 +1,5 @@
 [BackgroundRepeat] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#BackgroundRepeat#
+ImageName=
 Hidden=0

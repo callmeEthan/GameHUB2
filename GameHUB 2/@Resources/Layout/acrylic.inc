@@ -39,6 +39,7 @@ ImageTint=#ImageTint#
 PreserveAspectRatio=0
 DynamicVariables=1
 UpdateDivider=-1
+ImageAlpha=0
 
 
 [Title]
@@ -53,6 +54,7 @@ Text=#Name#
 DynamicVariables=1
 Hidden=(#Title#=0 ? 1 : 0)
 UpdateDivider=-1
+InlineSetting=#InlineSetting#
 
 [FrostedGlass]
 Measure=Plugin
@@ -68,3 +70,28 @@ ActionList1=Wait #Delay# | Swap
 Swap=[!ActivateConfig "#CURRENTCONFIG#" "#Config#"]
 DynamicVariables=1
 UpdateDivider=-1
+
+[PreviousButton]
+Meter=Image
+ImageName=arrow.png
+X=0
+Y=(#DisplayHeight#*0.2)
+W=(#DisplayWidth#*0.05)
+H=(#DisplayHeight#*0.6)
+ImageAlpha=100
+ImageFlip=Horizontal
+PreserveAspectRatio=1
+LeftMouseUpAction=[!CommandMeasure "Animation" "highlight_previous()" "GameHUB 2\Display1"]
+Hidden=(#OnScreenNavigate#=1 ? 0 : 1)
+
+[NextButton]
+Meter=Image
+ImageName=arrow.png
+X=(#DisplayWidth#*0.95)
+Y=(#DisplayHeight#*0.2)
+W=(#DisplayWidth#*0.05)
+H=(#DisplayHeight#*0.6)
+ImageAlpha=100
+PreserveAspectRatio=1
+LeftMouseUpAction=[!CommandMeasure "Animation" "highlight_next()" "GameHUB 2\Display1"]
+Hidden=(#OnScreenNavigate#=1 ? 0 : 1)

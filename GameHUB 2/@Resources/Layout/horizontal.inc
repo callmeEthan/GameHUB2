@@ -17,6 +17,12 @@ Sub=Repeat
 Index=1
 Limit=(#Total#)
 
+[BackgroundLoadDelay]
+Measure=Plugin
+Plugin=ActionTimer
+ActionList1=Wait 50 | SetBackground
+SetBackground=[!CommandMeasure Animation background_load_delay()]
+
 [Animation]
 Measure=Script
 ScriptFile=#@#Script\horizontal.lua
@@ -42,6 +48,7 @@ MouseScrollUpAction=[!CommandMeasure "Animation" "scroll(-#ScrollSpeed#)"]
 MouseScrollDownAction=[!CommandMeasure "Animation" "scroll(#ScrollSpeed#)"]
 UpdateDivider=-1
 Hidden=0
+PreserveAspectRatio=0
 
 [Surface]
 meter=Image
@@ -62,6 +69,7 @@ W=#BannerWidth#
 H=#BannerHeight#
 AntiAlias=1
 StringAlign=#StringAlign#
+FontWeight=250
 ClipString=2
 TransformationMatrix=1; 0; 0; 1; #TitleX#; #TitleY#
 Group=Title
@@ -120,6 +128,7 @@ ImageName=#@#Highlight.png
 Y=#CURRENTCONFIGHEIGHT#
 W=#BannerWidth#
 H=#BannerHeight#
+ImageTint=#HighlightEffect#
 SolidColor=0,0,0,1
 PreserveAspectRatio=0
 Group=Cover

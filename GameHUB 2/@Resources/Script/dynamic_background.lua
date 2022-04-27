@@ -8,20 +8,17 @@ function Initialize()
 	if variant=='Display.ini' then variant='Display2.ini' else variant='Display.ini' end
 	default_color=SKIN:GetVariable('FontColor','255,255,255')
 	default_InlineSetting=SKIN:GetVariable('InlineSetting')
-	default_StringStyle=SKIN:GetVariable('StringStyle')
 end
 
 function broadcast_highlight(index)
 	local font_color=SKIN:GetVariable('Color'..index,'null')
 	local InlineSetting=SKIN:GetVariable('InlineSetting'..index,'null')
-	local StringStyle=SKIN:GetVariable('StringStyle'..index,'null')
 	if dynamic_title==1 then 
 		local name=SKIN:GetVariable('Name'..index)
 		SKIN:Bang('!ShowMeter','Title')
 		SKIN:Bang('!SetVariable','Name',name)
 		if font_color ~= 'null' then SKIN:Bang('!SetVariable','FontColor',font_color) else SKIN:Bang('!SetVariable','FontColor', default_color) end
 		if InlineSetting ~= 'null' then SKIN:Bang('!SetVariable','InlineSetting',InlineSetting) else SKIN:Bang('!SetVariable','InlineSetting', default_InlineSetting) end
-		if StringStyle ~= 'null' then SKIN:Bang('!SetVariable','StringStyle',StringStyle) else SKIN:Bang('!SetVariable','StringStyle', default_StringStyle) end
 		SKIN:Bang('!UpdateMeter','Title')
 	end
 	if dynamic_background==0 then return end
@@ -31,7 +28,6 @@ function broadcast_highlight(index)
 	if SKIN:GetVariable('Background'..index)~=SKIN:GetVariable('Background') or SKIN:GetVariable('Name'..index)~=SKIN:GetVariable('Name') then
 		if font_color ~= 'null' then SKIN:Bang('!WriteKeyValue', 'Variables','FontColor',font_color, 'config.inc') end
 		if InlineSetting ~= 'null' then SKIN:Bang('!WriteKeyValue', 'Variables','InlineSetting', InlineSetting, 'config.inc') end
-		if StringStyle ~= 'null' then SKIN:Bang('!WriteKeyValue', 'Variables','StringStyle', StringStyle, 'config.inc') end
 		SKIN:Bang('!WriteKeyValue', 'Variables', 'Layout', layout, 'config.inc')
 		SKIN:Bang('!WriteKeyValue', 'Variables', 'Background', background, 'config.inc')
 		SKIN:Bang('!WriteKeyValue', 'Variables', 'Name', name, 'config.inc')
