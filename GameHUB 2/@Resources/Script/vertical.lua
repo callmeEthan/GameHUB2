@@ -279,9 +279,9 @@ function focus(index,scaling)
 	if scroll_lock==1 then return end
 	local center=skinheight*scaling
 	local index=tonumber(index)
-	local Y = y[index]+offset
+	local Y = y[index]+offset_true
 	Y = (Y + bannerheight) % (scroll_limit + skinheight + space) - bannerheight
-	Y = Y - offset
+	Y = Y - offset_true
 	offset=math.min(offset,-(Y-(skinheight-center-bannerheight)))
 	offset=math.max(offset,-(Y-center))
 
