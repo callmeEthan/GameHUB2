@@ -26,12 +26,14 @@ function Initialize()
 	shift_y=tonumber(SKIN:GetVariable('SkinY','0'))*skinheight
 	image_shift=tonumber(SKIN:GetVariable('ImageShift','0.9'))
 	image_scale=tonumber(SKIN:GetVariable('ImageScale','1'))
+	upscale=image_scale/tonumber(SKIN:GetVariable('SkinWidth','1'))
 	move()
 	if SKIN:GetVariable('Keyboard','0')=='0' then SKIN:Bang('!CommandMeasure','Control','Execute 1') end
 	if SKIN:GetVariable('Gamepad','0')=='0' then SKIN:Bang('!CommandMeasure','Control','Execute 2') end
 	if SKIN:GetVariable('ScrollLock','0')=='0' then scroll_lock=0 else scroll_lock=1 end
 	static_background=tonumber(SKIN:GetVariable('StaticBackground','0'))
 	if SKIN:GetVariable('InvertScroll')=='1' then scroll_multiplier=-1 else scroll_multiplier=1 end
+	scroll_wrap = tonumber(SKIN:GetVariable('Scroll_wrap','1'))
 end
 
 function get_meter()
@@ -126,10 +128,13 @@ end
 function update()
 	offset_true = (offset_true-((offset_true-offset)/divider))
 	offsetx = (offsetx-((offsetx-0)/transition))
+	local pos
 	for k,v in pairs(meter_list) do
 		for mk,mv in pairs(v) do
+		pos = y[mk]+offset_true
+		pos = (pos + bannerheight) % (scroll_limit + skinheight + space) - bannerheight
 		v[mk]:SetX(x[mk]+offsetx)
-		v[mk]:SetY(y[mk]+offset_true)
+		v[mk]:SetY(pos)
 		end
 	end
 	if highlight_index ~=0 then
@@ -167,8 +172,10 @@ end
 function scroll(speed)
 	if scroll_lock==1 then return end
 	offset = offset - (speed * skinheight) * scroll_multiplier
-	if offset>0 then offset = 0 end
-	if offset<-scroll_limit then offset = -scroll_limit end
+	if scroll_wrap == 0 then
+		if offset>0 then offset = 0 end
+		if offset<-scroll_limit then offset = -scroll_limit end
+	end
 end
 
 function highlight(index)
@@ -272,8 +279,15 @@ function focus(index,scaling)
 	if scroll_lock==1 then return end
 	local center=skinheight*scaling
 	local index=tonumber(index)
-	offset=math.min(offset,-(y[index]-(skinheight-center-bannerheight)))
-	offset=math.max(offset,-(y[index]-center))
+	local Y = y[index]+offset
+	Y = (Y + bannerheight) % (scroll_limit + skinheight + space) - bannerheight
+	Y = Y - offset
+	offset=math.min(offset,-(Y-(skinheight-center-bannerheight)))
+	offset=math.max(offset,-(Y-center))
+
+
+	--offset=math.min(offset,-(y[index]-(skinheight-center-bannerheight)))
+	--offset=math.max(offset,-(y[index]-center))
 	scroll(0)
 end
 
@@ -286,24 +300,44 @@ function input(key)
 		focus(highlight_index,0)
 		return end
 	if key == 'left' then
-		if highlight_index - 1 > 0 then
-		highlight(highlight_index - 1)
-		focus(highlight_index,0.2)
+		local index = highlight_index - 1
+		if scroll_wrap == 1 then
+			if index<=0 then index = total - index end
+			highlight(index)
+			focus(index, 0.2)
+		elseif index>0 then 
+			highlight(index)
+			focus(index,0.2)
 		end
 	elseif key == 'right' then
-		if highlight_index + 1 <= total then
-		highlight(highlight_index + 1)
-		focus(highlight_index,0.2)
+		local index = highlight_index + 1
+		if scroll_wrap==1 then
+			if index>total then index = index - total end
+			highlight(index)
+			focus(index, 0.2)
+		elseif index <= total then
+			highlight(index)
+			focus(index,0.2)
 		end
 	elseif key == 'up' then
-		if highlight_index-columns > 0 then 
-		highlight(highlight_index - columns)
-		focus(highlight_index,0.2)
+		local index = highlight_index - columns
+		if scroll_wrap == 1 then
+			if index<=0 then index = total - index end
+			highlight(index)
+			focus(index, 0.2)
+		elseif index>0 then 
+			highlight(index)
+			focus(index,0.2)
 		end
-	elseif key == 'down' then
-		if highlight_index+columns <= total then 
-		highlight(highlight_index + columns)
-		focus(highlight_index,0.2)
+	elseif key == 'down' then	
+		local index = highlight_index + columns
+		if scroll_wrap==1 then
+			if index>total then index = index - total end
+			highlight(index)
+			focus(index, 0.2)
+		elseif index <= total then
+			highlight(index)
+			focus(index,0.2)
 		end
 	elseif key == 'enter' then
 		interact(highlight_index)

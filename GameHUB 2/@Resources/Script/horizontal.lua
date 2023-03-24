@@ -8,13 +8,14 @@ function Initialize()
 	bannerheight=tonumber(SKIN:GetVariable('BannerHeight'))
 	skinwidth=tonumber(SKIN:GetVariable('CURRENTCONFIGWIDTH','100'))
 	skinheight=tonumber(SKIN:GetVariable('CURRENTCONFIGHEIGHT','100'))
-	divider=tonumber(SKIN:GetVariable('ScrollDivider'))
-	transition=tonumber(SKIN:GetVariable('Transition'))
-	SpectrumIcon=tonumber(SKIN:GetVariable('SpectrumIcon',1))
+	divider=tonumber(SKIN:GetVariable('ScrollDivider','8'))
+	transition=tonumber(SKIN:GetVariable('Transition','8'))
+	SpectrumIcon=tonumber(SKIN:GetVariable('SpectrumIcon','1'))
 	highlight_solid=SKIN:GetVariable('HighlightColor','0,0,0,1')
 	highlight_tint=SKIN:GetVariable('HighlightTint','255,255,255')
 	move_x=tonumber(SKIN:GetVariable('Offset_x',0))
 	move_y=tonumber(SKIN:GetVariable('Offset_y',0))
+	expand=tonumber(SKIN:GetVariable('Expand','2'))*bannerwidth
 	highlight_index = 0
 	spectrum = 0
 	x,y = {}, {}
@@ -35,8 +36,12 @@ function Initialize()
 	if SKIN:GetVariable('ScrollLock','0')=='0' then scroll_lock=0 else scroll_lock=1 end
 	static_background=tonumber(SKIN:GetVariable('StaticBackground','0'))
 	if SKIN:GetVariable('InvertScroll')=='1' then scroll_multiplier=-1 else scroll_multiplier=1 end
+	scroll_wrap = tonumber(SKIN:GetVariable('Scroll_wrap','1'))
 end	
 
+function log(x)
+	SKIN:Bang("!Log", x)
+end
 
 function get_meter()
 	total=tonumber(SKIN:GetVariable('Total','0'))
@@ -50,7 +55,7 @@ function get_meter()
 			yy = 0
 		else
 			yy = yy + bannerheight + rowspace
-		end			
+		end
 	end
 	scroll_limit=math.ceil(total/rows)
 	scroll_limit=(scroll_limit * (bannerwidth + space)) - skinwidth - space
@@ -131,9 +136,12 @@ end
 function update()
 	offset_true = (offset_true-((offset_true-offset)/divider))
 	offsety = (offsety-((offsety-0)/transition))
+	local pos
 	for k,v in pairs(meter_list) do
 		for mk,mv in pairs(v) do
-		v[mk]:SetX(x[mk]+offset_true+move_x)
+		pos = x[mk]+offset_true+move_x
+		pos = (pos + bannerwidth) % (scroll_limit + skinwidth + space) - bannerwidth
+		v[mk]:SetX(pos)
 		v[mk]:SetY(y[mk]+offsety+move_y)
 		end
 	end
@@ -144,10 +152,26 @@ function update()
 	if static_background == 1 then static_background_set() end
 end
 
+function expand_entry(index)
+	total=tonumber(SKIN:GetVariable('Total','0'))
+	local xx,yy,entry=0,0,0
+	for i=1, total do
+		x[entry+1]=xx
+		y[entry+1]=yy
+		entry = entry + 1
+		if entry % rows == 0 then
+			xx = xx + bannerwidth + space
+			yy = 0
+		else
+			yy = yy + bannerheight + rowspace
+		end			
+	end
+end
+
 
 function background_load_delay()
 	SKIN:Bang('!SetOption','Background'..background_index,'ImageName','#@#Background\\#Background' .. background_index ..'#')
-	if background_index < total then
+		if background_index < total then
 		SKIN:Bang('!CommandMeasure','BackgroundLoadDelay','Execute 1')
 		background_index = background_index + 1
 	end
@@ -173,8 +197,10 @@ end
 function scroll(speed)
 	if scroll_lock==1 then return end
 	offset = offset - (speed * skinwidth) * scroll_multiplier
-	if offset>0 then offset = 0 end
-	if offset<-scroll_limit then offset = -scroll_limit end
+	if scroll_wrap == 0 then
+		if offset>0 then offset = 0 end
+		if offset<-scroll_limit then offset = -scroll_limit end
+	end
 end
 
 function highlight(index)
@@ -187,6 +213,7 @@ function highlight(index)
 	spectrum_meter:SetX(x[index]+offset_true)
 	spectrum_meter:SetY(y[index]+offsety)
 	focus(index,0)
+	expand_entry(index)
 	if SpectrumIcon==0 then SKIN:Bang('!SetOption','Icon'..index,'ImageAlpha',0) end
 	if highlight_index ~= index then
 		SKIN:Bang('!SetOption','Icon'..highlight_index, 'SolidColor',  SKIN:GetVariable('IconSolid','0,0,0,1'))
@@ -267,8 +294,11 @@ function focus(index,scaling)
 	if scroll_lock==1 then return end
 	local center=skinwidth*scaling
 	local index=tonumber(index)
-	offset=math.min(offset,-(x[index]-(skinwidth-center-bannerwidth)))
-	offset=math.max(offset,-(x[index]-center))
+	local X = x[index]+offset+move_x
+	X = (X + bannerwidth) % (scroll_limit + skinwidth + space) - bannerwidth
+	X = X - offset
+	offset=math.min(offset,-(X-(skinwidth-center-bannerwidth)))
+	offset=math.max(offset,-(X-center))
 	scroll(0)
 end
 
@@ -291,24 +321,44 @@ function input(key)
 		focus(highlight_index,0)
 		return end
 	if key == 'up' then
-		if highlight_index - 1 > 0 then
-		highlight(highlight_index - 1)
-		focus(highlight_index,0.2)
+		local index = highlight_index - 1
+		if scroll_wrap == 1 then
+			if index<=0 then index = total - index end
+			highlight(index)
+			focus(index, 0.2)
+		elseif index>0 then 
+			highlight(index)
+			focus(index,0.2)
 		end
 	elseif key == 'down' then
-		if highlight_index + 1 <= total then
-		highlight(highlight_index + 1)
-		focus(highlight_index,0.2)
+		local index = highlight_index + 1
+		if scroll_wrap==1 then
+			if index>total then index = index - total end
+			highlight(index)
+			focus(index, 0.2)
+		elseif index <= total then
+			highlight(index)
+			focus(index,0.2)
 		end
 	elseif key == 'left' then
-		if highlight_index-rows > 0 then 
-		highlight(highlight_index - rows)
-		focus(highlight_index,0.2)
+		local index = highlight_index - rows
+		if scroll_wrap == 1 then
+			if index<=0 then index = total - index end
+			highlight(index)
+			focus(index, 0.2)
+		elseif index>0 then 
+			highlight(index)
+			focus(index,0.2)
 		end
 	elseif key == 'right' then
-		if highlight_index+rows <= total then 
-		highlight(highlight_index + rows)
-		focus(highlight_index,0.2)
+		local index = highlight_index + rows
+		if scroll_wrap==1 then
+			if index>total then index = index - total end
+			highlight(index)
+			focus(index, 0.2)
+		elseif index <= total then
+			highlight(index)
+			focus(index,0.2)
 		end
 	elseif key == 'enter' then
 		interact(highlight_index)
