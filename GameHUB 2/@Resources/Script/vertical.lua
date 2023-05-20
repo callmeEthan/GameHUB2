@@ -36,6 +36,10 @@ function Initialize()
 	scroll_wrap = tonumber(SKIN:GetVariable('Scroll_wrap','1'))
 end
 
+function log(x)
+	SKIN:Bang("!Log", x)
+end
+
 function get_meter()
 	total=tonumber(SKIN:GetVariable('Total','0'))
 	local xx,yy,entry=0,0,0
@@ -138,8 +142,11 @@ function update()
 		end
 	end
 	if highlight_index ~=0 then
+		local pos
+		pos = y[highlight_index]+offset_true
+		pos = (pos + bannerheight) % (scroll_limit + skinheight + space) - bannerheight
 		spectrum_meter:SetX(x[highlight_index]+offsetx)
-		spectrum_meter:SetY(y[highlight_index]+offset_true)
+		spectrum_meter:SetY(pos)
 	end
 	if static_background == 1 then static_background_set() end
 end
@@ -185,8 +192,11 @@ function highlight(index)
 	if spectrum == 1 then
 		SKIN:Bang('!SetOption','SpectrumCover', 'ImageName', '#@#\\Cover\\'..SKIN:GetVariable('Cover'..index))
 		end
+	local pos
+	pos = y[highlight_index]+offset_true
+	pos = (pos + bannerheight) % (scroll_limit + skinheight + space) - bannerheight
 	spectrum_meter:SetX(x[index]+offsetx)
-	spectrum_meter:SetY(y[index]+offset_true)
+	spectrum_meter:SetY(pos)
 	focus(index,0)
 	if SpectrumIcon==0 then SKIN:Bang('!SetOption','Icon'..highlight_index,'ImageAlpha',0) end
 	if highlight_index ~= index then
@@ -219,8 +229,11 @@ function broadcast_highlight(index)
 	if spectrum == 1 then
 		SKIN:Bang('!SetOption','SpectrumCover', 'ImageName', '#@#\\Cover\\'..SKIN:GetVariable('Cover'..index))
 		end
+	local pos
+	pos = y[highlight_index]+offset_true
+	pos = (pos + bannerheight) % (scroll_limit + skinheight + space) - bannerheight
 	spectrum_meter:SetX(x[index]+offsetx)
-	spectrum_meter:SetY(y[index]+offset_true)
+	spectrum_meter:SetY(pos)
 	focus(index,0)
 	if SpectrumIcon==0 then SKIN:Bang('!SetOption','Icon'..highlight_index,'ImageAlpha',0) end
 	if highlight_index ~= index then

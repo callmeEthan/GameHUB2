@@ -146,7 +146,10 @@ function update()
 		end
 	end
 	if highlight_index ~=0 then
-		spectrum_meter:SetX(x[highlight_index]+offset_true)
+		local pos
+		pos = x[highlight_index]+offset_true+move_x
+		pos = (pos + bannerwidth) % (scroll_limit + skinwidth + space) - bannerwidth
+		spectrum_meter:SetX(pos)
 		spectrum_meter:SetY(y[highlight_index])
 	end
 	if static_background == 1 then static_background_set() end
@@ -210,7 +213,11 @@ function highlight(index)
 	if spectrum == 1 then
 		SKIN:Bang('!SetOption','SpectrumCover', 'ImageName', '#@#\\Cover\\'..SKIN:GetVariable('Cover'..index))
 		end
-	spectrum_meter:SetX(x[index]+offset_true)
+	local pos
+	pos = x[highlight_index]+offset_true+move_x
+	pos = (pos + bannerwidth) % (scroll_limit + skinwidth + space) - bannerwidth
+		spectrum_meter:SetX(pos)
+	spectrum_meter:SetX(pos)
 	spectrum_meter:SetY(y[index]+offsety)
 	focus(index,0)
 	expand_entry(index)
@@ -246,7 +253,11 @@ function broadcast_highlight(index)
 	if spectrum == 1 then
 		SKIN:Bang('!SetOption','SpectrumCover', 'ImageName', '#@#\\Cover\\'..SKIN:GetVariable('Cover'..index))
 		end
-	spectrum_meter:SetX(x[index]+offset_true)
+	local pos
+	pos = x[highlight_index]+offset_true+move_x
+	pos = (pos + bannerwidth) % (scroll_limit + skinwidth + space) - bannerwidth
+	spectrum_meter:SetX(pos)
+	spectrum_meter:SetX(pos)
 	spectrum_meter:SetY(y[index]+offsety)
 	focus(index,0)
 	if SpectrumIcon==0 then SKIN:Bang('!SetOption','Icon'..index,'ImageAlpha',0) end
@@ -299,7 +310,6 @@ function focus(index,scaling)
 	X = X - offset_true
 	offset=math.min(offset,-(X-(skinwidth-center-bannerwidth-space)))
 	offset=math.max(offset,-(X-center))
-	log(offset)
 	scroll(0)
 end
 
