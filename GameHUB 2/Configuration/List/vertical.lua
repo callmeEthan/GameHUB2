@@ -44,6 +44,10 @@ function Initialize()
 	edit=0
 end
 
+function log(x)
+	SKIN:Bang("!Log", x)
+end
+
 function get_meter()
 	local meter_entry=1
 	if SKIN:GetVariable('cover_meter.inc','0') == '1' then
@@ -103,6 +107,8 @@ function get_meter()
 			entry = entry+1
 		end
 		meter_entry = meter_entry + 1
+		background_index = 1
+		background_load_delay()	
 		end
 	
 	if SKIN:GetVariable('Title','1') == '0' then SKIN:Bang('!HideMeterGroup','Title') end
@@ -134,6 +140,13 @@ function update()
 	if static_background == 1 then static_background_set() end
 end
 
+function background_load_delay()
+	SKIN:Bang('!SetOption','Background'..background_index,'ImageName','#@#Background\\#Background' .. background_index ..'#')
+	if background_index < total then
+		SKIN:Bang('!CommandMeasure','BackgroundLoadDelay','Execute 1')
+		background_index = background_index + 1
+	end
+end
 
 function static_background_set()
 	if background_meter == nil then return end
@@ -425,4 +438,53 @@ function swap_entry()
 	argument = edit
 	action = 'swap'
 	get_index()
+end
+
+function table.shallow_copy(t)
+  local t2 = {}
+  for k,v in pairs(t) do
+    t2[k] = v
+  end
+  return t2
+end
+
+function indexOf(array, value)
+    for i, v in ipairs(array) do
+        if v == value then
+            return i
+        end
+    end
+    return -1
+end
+
+function sort_alphabetically(descend)
+	local entries, name, index, icon, cover, background, dir
+	local list = SKIN:GetVariable('List')
+	entries = {}
+	for i=1, total do
+		table.insert(entries, SKIN:GetVariable('Name'..i,''))
+	end
+	local sort = table.shallow_copy(entries)
+	if descend==1 then table.sort(sort, function(a,b) return a > b end) else table.sort(sort) end
+	
+	log('sort result')
+	for i=1, total do
+		name = sort[i]
+		index = indexOf(entries, name)
+		if index ~= -1 then
+		log(i..": "..name)
+		icon = SKIN:GetVariable('Icon'..index,'')
+		cover = SKIN:GetVariable('Cover'..index,'')
+		background = SKIN:GetVariable('Background'..index,'')
+		dir = SKIN:GetVariable('Dir'..index,'')
+		
+		SKIN:Bang('!WriteKeyValue', 'Variables', 'Name'..i, name, '#@#User\\'..list)
+		SKIN:Bang('!WriteKeyValue', 'Variables', 'Icon'..i, icon, '#@#User\\'..list)
+		SKIN:Bang('!WriteKeyValue', 'Variables', 'Cover'..i, cover, '#@#User\\'..list)
+		SKIN:Bang('!WriteKeyValue', 'Variables', 'Background'..i, background, '#@#User\\'..list)
+		SKIN:Bang('!WriteKeyValue', 'Variables', 'Dir'..i, dir, '#@#User\\'..list)
+		end
+	end
+	log("sort completed")
+	SKIN:Bang('!Refresh')
 end

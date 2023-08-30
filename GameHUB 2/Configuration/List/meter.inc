@@ -97,33 +97,6 @@ LeftMouseUpAction=[!CommandMeasure Animation "interact(11)"]
 ImageName=#@#Icons\#Icon11#
 Hidden=0
 
-[Icon12] 
-Meter=Image 
-MeterStyle=Icon
-MouseOverAction=[!CommandMeasure Animation "highlight(12)"]
-MouseLeaveAction=[!CommandMeasure Animation "dehighlight(12)"]
-LeftMouseUpAction=[!CommandMeasure Animation "interact(12)"]
-ImageName=#@#Icons\#Icon12#
-Hidden=0
-
-[Icon13] 
-Meter=Image 
-MeterStyle=Icon
-MouseOverAction=[!CommandMeasure Animation "highlight(13)"]
-MouseLeaveAction=[!CommandMeasure Animation "dehighlight(13)"]
-LeftMouseUpAction=[!CommandMeasure Animation "interact(13)"]
-ImageName=#@#Icons\#Icon13#
-Hidden=0
-
-[Icon14] 
-Meter=Image 
-MeterStyle=Icon
-MouseOverAction=[!CommandMeasure Animation "highlight(14)"]
-MouseLeaveAction=[!CommandMeasure Animation "dehighlight(14)"]
-LeftMouseUpAction=[!CommandMeasure Animation "interact(14)"]
-ImageName=#@#Icons\#Icon14#
-Hidden=0
-
 [Title1] 
 Meter=String 
 MeterStyle=Title 
@@ -190,106 +163,70 @@ MeterStyle=Title
 Text=#Name11# 
 Hidden=0
 
-[Title12] 
-Meter=String 
-MeterStyle=Title 
-Text=#Name12# 
-Hidden=0
-
-[Title13] 
-Meter=String 
-MeterStyle=Title 
-Text=#Name13# 
-Hidden=0
-
-[Title14] 
-Meter=String 
-MeterStyle=Title 
-Text=#Name14# 
-Hidden=0
-
 [Background1] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background1#
+ImageName=
 Hidden=0
 
 [Background2] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background2#
+ImageName=
 Hidden=0
 
 [Background3] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background3#
+ImageName=
 Hidden=0
 
 [Background4] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background4#
+ImageName=
 Hidden=0
 
 [Background5] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background5#
+ImageName=
 Hidden=0
 
 [Background6] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background6#
+ImageName=
 Hidden=0
 
 [Background7] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background7#
+ImageName=
 Hidden=0
 
 [Background8] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background8#
+ImageName=
 Hidden=0
 
 [Background9] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background9#
+ImageName=
 Hidden=0
 
 [Background10] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background10#
+ImageName=
 Hidden=0
 
 [Background11] 
 Meter=Image 
 MeterStyle=Background
-ImageName=#@#Background\#Background11#
-Hidden=0
-
-[Background12] 
-Meter=Image 
-MeterStyle=Background
-ImageName=#@#Background\#Background12#
-Hidden=0
-
-[Background13] 
-Meter=Image 
-MeterStyle=Background
-ImageName=#@#Background\#Background13#
-Hidden=0
-
-[Background14] 
-Meter=Image 
-MeterStyle=Background
-ImageName=#@#Background\#Background14#
+ImageName=
 Hidden=0
 
 [Cover1] 
@@ -391,33 +328,6 @@ LeftMouseUpAction=[!CommandMeasure Animation "interact(11)"]
 ImageName=#@#Cover\#Cover11#
 Hidden=0
 
-[Cover12] 
-Meter=Image 
-MeterStyle=Cover
-MouseOverAction=[!CommandMeasure Animation "highlight(12)"]
-MouseLeaveAction=[!CommandMeasure Animation "dehighlight(12)"]
-LeftMouseUpAction=[!CommandMeasure Animation "interact(12)"]
-ImageName=#@#Cover\#Cover12#
-Hidden=0
-
-[Cover13] 
-Meter=Image 
-MeterStyle=Cover
-MouseOverAction=[!CommandMeasure Animation "highlight(13)"]
-MouseLeaveAction=[!CommandMeasure Animation "dehighlight(13)"]
-LeftMouseUpAction=[!CommandMeasure Animation "interact(13)"]
-ImageName=#@#Cover\#Cover13#
-Hidden=0
-
-[Cover14] 
-Meter=Image 
-MeterStyle=Cover
-MouseOverAction=[!CommandMeasure Animation "highlight(14)"]
-MouseLeaveAction=[!CommandMeasure Animation "dehighlight(14)"]
-LeftMouseUpAction=[!CommandMeasure Animation "interact(14)"]
-ImageName=#@#Cover\#Cover14#
-Hidden=0
-
 [Directory1] 
 Meter=String 
 MeterStyle=Directory
@@ -482,22 +392,4 @@ Hidden=0
 Meter=String 
 MeterStyle=Directory
 Text=#Dir11# 
-Hidden=0
-
-[Directory12] 
-Meter=String 
-MeterStyle=Directory
-Text=#Dir12# 
-Hidden=0
-
-[Directory13] 
-Meter=String 
-MeterStyle=Directory
-Text=#Dir13# 
-Hidden=0
-
-[Directory14] 
-Meter=String 
-MeterStyle=Directory
-Text=#Dir14# 
 Hidden=0
