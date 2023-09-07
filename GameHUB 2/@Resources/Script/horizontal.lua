@@ -121,6 +121,7 @@ function get_meter()
 		SKIN:Bang('!SetOption','Icon'..highlight_index, 'SolidColor', highlight_solid)
 		SKIN:Bang('!SetOption','Icon'..highlight_index, 'ImageTint' , highlight_tint)
 	end
+	if tonumber(SKIN:GetVariable('ForceSpectrum'))==1 then spectrum = 1 end
 end
 
 function move()
@@ -211,7 +212,7 @@ function highlight(index)
 	SKIN:Bang('!CommandMeasure','Broadcast','broadcast_cmd(\'broadcast_highlight('..index..')\')')
 	spectrum_meter:Show()
 	if spectrum == 1 then
-		SKIN:Bang('!SetOption','SpectrumCover', 'ImageName', '#@#\\Cover\\'..SKIN:GetVariable('Cover'..index))
+		SKIN:Bang('!SetOption',spectrum_meter:GetName(), 'ImageName', '#@#Cover\\'..SKIN:GetVariable('Cover'..index))
 		end
 	local pos
 	pos = x[highlight_index]+offset_true+move_x
